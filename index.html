@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Шайкин Илья — Специалист по недвижимости</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f5f5f7;
+  --surf:#ffffff;
+  --text:#1d1d1f;
+  --t2:rgba(29,29,31,.6);
+  --t3:rgba(29,29,31,.36);
+  --blue:#0071e3;
+  --blue2:#2997ff;
+  --gold:#a97b1f;
+  --goldbg:#fbf1de;
+  --sep:rgba(0,0,0,.08);
+  --max:430px;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  min-height:100vh;
+  padding-bottom:86px; /* place for fixed bottom bar */
+}
+
+.wrap{max-width:var(--max);margin:0 auto;position:relative}
+
+/* ═══ HEADER PHOTO ═══ */
+.hero{position:relative;width:100%;padding-top:121.9%;overflow:hidden;background:#ddd}
+.hero img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block}
+.hero-grad{position:absolute;left:0;right:0;bottom:0;height:62%;background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.05) 30%,rgba(0,0,0,.55) 70%,rgba(0,0,0,.82) 100%)}
+.hero-text{position:absolute;left:0;right:0;bottom:0;padding:0 22px 40px;color:#fff;z-index:2}
+.hero-text h1{font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:3px;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+.hero-role{font-size:13px;font-weight:500;color:rgba(255,255,255,.82);margin-bottom:14px}
+.company-label{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px}
+.company-row{display:flex;align-items:center;gap:8px}
+.company-badge{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--gold),#d4a942);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#1d1d1f;flex-shrink:0}
+.company-name{font-size:13px;font-weight:600;color:#fff}
+
+/* ═══ FLOATING ICON ROW — straddles boundary ═══ */
+.icon-float{position:relative;z-index:5;display:flex;justify-content:center;gap:14px;margin-top:-28px;padding:0 22px}
+.icon-circle{width:52px;height:52px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.16),0 0 0 1px rgba(0,0,0,.04);text-decoration:none;transition:transform .2s}
+.icon-circle:active{transform:scale(.93)}
+.icon-circle svg,.icon-circle span{width:22px;height:22px;font-size:20px;display:flex;align-items:center;justify-content:center}
+
+/* ═══ CONTENT CARD ═══ */
+.content{position:relative;background:var(--surf);border-radius:26px 26px 0 0;margin-top:-18px;padding:30px 22px 8px;z-index:1}
+
+.a{opacity:0;transform:translateY(14px);transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1)}
+.a.in{opacity:1;transform:none}
+.d1{transition-delay:.05s}.d2{transition-delay:.1s}.d3{transition-delay:.15s}.d4{transition-delay:.2s}.d5{transition-delay:.25s}
+
+/* ABOUT */
+.about-title{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
+.about-text{font-size:13.5px;color:var(--t2);line-height:1.65;margin-bottom:26px}
+
+/* SECTION TITLE */
+.section-title{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:12px}
+
+/* SERVICES — even rows, consistent alignment, expandable accordion */
+.services{display:flex;flex-direction:column;margin-bottom:26px;border-radius:18px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.03),0 6px 18px rgba(0,0,0,.04);border:1px solid var(--sep)}
+.srv-item{background:var(--surf);border-bottom:1px solid var(--sep);transition:background .2s}
+.srv-item:last-child{border-bottom:none}
+.srv-item.open{background:rgba(0,113,227,.03)}
+.srv-row{display:flex;align-items:center;gap:13px;padding:15px 16px;cursor:pointer;user-select:none}
+.srv-icon{width:40px;height:40px;min-width:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;background:rgba(0,113,227,.07)}
+.srv-body{flex:1;min-width:0}
+.srv-title{font-size:13px;font-weight:700;color:var(--text);line-height:1.35}
+.srv-sub{font-size:11px;font-weight:500;color:var(--blue);margin-top:1px;opacity:.85}
+.srv-chevron{width:26px;height:26px;min-width:26px;border-radius:50%;background:rgba(0,113,227,.07);border:1px solid rgba(0,113,227,.14);display:flex;align-items:center;justify-content:center;transition:all .3s}
+.srv-chevron svg{transition:transform .3s}
+.srv-item.open .srv-chevron{background:rgba(0,113,227,.16);border-color:rgba(0,113,227,.3)}
+.srv-item.open .srv-chevron svg{transform:rotate(180deg)}
+.srv-desc-wrap{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1),opacity .3s;opacity:0}
+.srv-item.open .srv-desc-wrap{opacity:1}
+.srv-desc{padding:0 16px 16px 69px;font-size:12px;color:var(--t2);line-height:1.65;border-top:1px solid var(--sep);margin:0 16px;padding-top:12px}
+
+/* ADDRESS */
+.address-block{display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:16px;border:1px solid var(--sep);margin-bottom:26px}
+.address-icon{font-size:16px;flex-shrink:0}
+.address-text{font-size:12px;font-weight:500;color:var(--t2)}
+
+/* CONTACTS */
+.contacts-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:20px}
+.contact-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:16px 10px;border-radius:16px;text-decoration:none;color:var(--text);border:1px solid var(--sep);transition:transform .2s,box-shadow .2s,border-color .2s}
+.contact-btn:active{transform:scale(.96)}
+.contact-btn .cb-icon{font-size:22px;line-height:1}
+.contact-btn .cb-icon svg{width:22px;height:22px}
+.contact-btn .cb-label{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text)}
+.contact-btn .cb-sub{font-size:9px;font-weight:500;color:var(--t3)}
+
+/* ACCENT */
+.accent-block{border-radius:18px;padding:18px;background:linear-gradient(135deg,var(--goldbg) 0%,rgba(0,113,227,.05) 100%);border:1px solid rgba(169,123,31,.2);text-align:center;margin-bottom:20px}
+.accent-block p{font-size:12.5px;font-weight:600;color:var(--gold);line-height:1.6}
+.accent-block p span{color:var(--text)}
+
+.footer{font-size:10px;color:var(--t3);letter-spacing:.03em;text-align:center;padding-bottom:14px}
+
+/* ═══ FIXED BOTTOM BAR ═══ */
+.bottom-bar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-top:1px solid var(--sep);padding:12px max(16px,env(safe-area-inset-left)) max(12px,env(safe-area-inset-bottom));display:flex;gap:10px;max-width:var(--max);margin:0 auto}
+.bb-primary{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--blue);color:#fff;border-radius:100px;font-size:14px;font-weight:700;text-decoration:none;padding:13px 0;transition:transform .2s}
+.bb-primary:active{transform:scale(.97)}
+.bb-icon{width:46px;height:46px;border-radius:50%;background:rgba(0,0,0,.04);display:flex;align-items:center;justify-content:center;font-size:19px;text-decoration:none;flex-shrink:0;color:var(--text);transition:transform .2s}
+.bb-icon:active{transform:scale(.93)}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HEADER PHOTO -->
+  <div class="hero">
+    <img src="photo.webp" alt="Шайкин Илья">
+    <div class="hero-grad"></div>
+    <div class="hero-text">
+      <h1>Шайкин Илья</h1>
+      <div class="hero-role">Специалист по недвижимости</div>
+      <div class="company-label">Агентство</div>
+      <div class="company-row">
+        <div class="company-badge">К</div>
+        <div class="company-name">Крайнов Недвижимость</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING ICONS -->
+  <div class="icon-float">
+    <a href="tel:+79038541338" class="icon-circle"><span>📞</span></a>
+    <a href="https://t.me/iliusha_1" target="_blank" rel="noopener" class="icon-circle">
+      <svg viewBox="0 0 26 26" fill="none"><path d="M21.5 5.5 3 12.5l6 1.5 2 5.5 3-3.5 4 3 3.5-13.5Z" fill="#29B3FF" fill-opacity=".18" stroke="#29B3FF" stroke-width="1.3" stroke-linejoin="round"/><path d="M9 14l8-5.5" stroke="#29B3FF" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </a>
+    <a href="mailto:shaykin@krainov-vrn.ru" class="icon-circle"><span>✉️</span></a>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- ABOUT -->
+    <div class="a">
+      <div class="about-title">Обо мне</div>
+      <p class="about-text">Помогаю купить, продать и правильно оценить недвижимость в Воронеже. Работаю честно, с полным сопровождением сделки — от подбора до получения ключей.</p>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="a d1">
+      <div class="section-title">Мои услуги</div>
+      <div class="services">
+        <div class="srv-item" data-srv>
+          <div class="srv-row" onclick="toggleSrv(this)">
+            <div class="srv-icon">🏢</div>
+            <div class="srv-body">
+              <div class="srv-title">Квартиры в новостройках</div>
+              <div class="srv-sub">без комиссии · по цене застройщика</div>
+            </div>
+            <div class="srv-chevron"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#0071e3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="srv-desc-wrap"><div class="srv-desc">Подберу лучшие варианты в новостройках без переплат и комиссии. Вы получите честные условия, выгодные предложения и сопровождение на всех этапах сделки.</div></div>
+        </div>
+        <div class="srv-item" data-srv>
+          <div class="srv-row" onclick="toggleSrv(this)">
+            <div class="srv-icon">💰</div>
+            <div class="srv-body">
+              <div class="srv-title">Квартиры от подрядчика</div>
+              <div class="srv-sub">по цене ниже застройщика</div>
+            </div>
+            <div class="srv-chevron"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#0071e3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="srv-desc-wrap"><div class="srv-desc">Работаю напрямую с подрядчиками, благодаря чему можно приобрести квартиру дешевле рыночной цены застройщика.</div></div>
+        </div>
+        <div class="srv-item" data-srv>
+          <div class="srv-row" onclick="toggleSrv(this)">
+            <div class="srv-icon">🔑</div>
+            <div class="srv-body">
+              <div class="srv-title">Покупка / продажа недвижимости</div>
+              <div class="srv-sub">вторичный рынок жилья</div>
+            </div>
+            <div class="srv-chevron"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#0071e3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="srv-desc-wrap"><div class="srv-desc">Помогу безопасно купить или продать недвижимость. Полное сопровождение сделки, проверка документов и помощь на каждом этапе.</div></div>
+        </div>
+        <div class="srv-item" data-srv>
+          <div class="srv-row" onclick="toggleSrv(this)">
+            <div class="srv-icon">🏦</div>
+            <div class="srv-body">
+              <div class="srv-title">Ипотека и рефинансирование</div>
+              <div class="srv-sub">в любом банке Воронежа</div>
+            </div>
+            <div class="srv-chevron"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#0071e3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="srv-desc-wrap"><div class="srv-desc">Подберу выгодные ипотечные программы, помогу с одобрением и рефинансированием. Работаю со всеми банками Воронежа.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADDRESS -->
+    <div class="address-block a d2">
+      <div class="address-icon">📍</div>
+      <div class="address-text">г. Воронеж, ул. Ворошилова, д.1в</div>
+    </div>
+
+    <!-- CONTACTS -->
+    <div class="a d3">
+      <div class="section-title">Контакты</div>
+      <div class="contacts-grid">
+        <a href="tel:+79038541338" class="contact-btn">
+          <div class="cb-icon">📞</div>
+          <div class="cb-label">Позвонить</div>
+          <div class="cb-sub">+7 952 552-01-08</div>
+        </a>
+        <a href="tel:+79038541338" class="contact-btn">
+          <div class="cb-icon">📱</div>
+          <div class="cb-label">Рабочий</div>
+          <div class="cb-sub">+7 903 854-13-38</div>
+        </a>
+        <a href="mailto:shaykin@krainov-vrn.ru" class="contact-btn">
+          <div class="cb-icon">✉️</div>
+          <div class="cb-label">Email</div>
+          <div class="cb-sub">shaykin@krainov-vrn.ru</div>
+        </a>
+        <a href="https://vk.ru/id406671637" target="_blank" rel="noopener" class="contact-btn">
+          <div class="cb-icon">
+            <svg viewBox="0 0 26 26" fill="none"><rect width="26" height="26" rx="8" fill="#4C75A3" fill-opacity=".14"/><path d="M4 6.5h3.2c.2 0 .38.14.43.34.5 2.04 1.6 5.06 2.6 6.36.16.2.48.07.48-.18V7.1c0-.33.27-.6.6-.6h2.4c.33 0 .6.27.6.6v5.34c0 .22.27.33.43.17.9-.92 1.9-2.76 2.4-5.16a.44.44 0 0 1 .43-.35h2.6c.3 0 .52.28.44.57-.7 2.7-2.06 4.82-3.3 6.02a.43.43 0 0 0-.01.6c1.3 1.46 2.78 3.5 3.7 5.71a.44.44 0 0 1-.41.6H19c-.2 0-.38-.13-.43-.32-.7-2.4-2.15-4.32-3.2-5.42-.17-.17-.46-.06-.46.18v5.17a.44.44 0 0 1-.44.44h-2.5a.44.44 0 0 1-.44-.44v-5c0-.23-.29-.35-.46-.18C9.7 16.6 7.96 18.9 7.1 20.7a.44.44 0 0 1-.4.26H4.3a.44.44 0 0 1-.4-.62C5.5 17.5 8 13.84 9.6 12.12a.43.43 0 0 0 0-.6C8.04 10 5.7 6.98 4.4 7a.44.44 0 0 1-.4-.62V6.94c0-.24.2-.44.44-.44Z" fill="#4C75A3"/></svg>
+          </div>
+          <div class="cb-label">ВКонтакте</div>
+          <div class="cb-sub">Написать</div>
+        </a>
+        <a href="https://t.me/iliusha_1" target="_blank" rel="noopener" class="contact-btn">
+          <div class="cb-icon">
+            <svg viewBox="0 0 26 26" fill="none"><rect width="26" height="26" rx="8" fill="#29B3FF" fill-opacity=".12"/><path d="M21.5 5.5 3 12.5l6 1.5 2 5.5 3-3.5 4 3 3.5-13.5Z" fill="#29B3FF" fill-opacity=".2" stroke="#29B3FF" stroke-width="1.2" stroke-linejoin="round"/><path d="M9 14l8-5.5" stroke="#29B3FF" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="cb-label">Telegram</div>
+          <div class="cb-sub">@iliusha_1</div>
+        </a>
+        <a href="https://www.instagram.com/ilia._.alecseevich" target="_blank" rel="noopener" class="contact-btn">
+          <div class="cb-icon">
+            <svg viewBox="0 0 26 26" fill="none"><rect width="26" height="26" rx="8" fill="url(#ig_grad)" fill-opacity=".16"/><rect x="5" y="5" width="16" height="16" rx="5" stroke="url(#ig_grad2)" stroke-width="1.4"/><circle cx="13" cy="13" r="3.5" stroke="url(#ig_grad2)" stroke-width="1.4"/><circle cx="18" cy="8.5" r="1" fill="#e15fa0"/><defs><linearGradient id="ig_grad" x1="0" y1="26" x2="26" y2="0"><stop offset="0%" stop-color="#f9a825"/><stop offset="50%" stop-color="#e15fa0"/><stop offset="100%" stop-color="#9b59b6"/></linearGradient><linearGradient id="ig_grad2" x1="0" y1="26" x2="26" y2="0"><stop offset="0%" stop-color="#f9a825"/><stop offset="50%" stop-color="#e15fa0"/><stop offset="100%" stop-color="#9b59b6"/></linearGradient></defs></svg>
+          </div>
+          <div class="cb-label">Instagram</div>
+          <div class="cb-sub">@ilia._.alecseevich</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ACCENT -->
+    <div class="accent-block a d4">
+      <p>⭐ <span>Сохраните мои контакты</span> — надёжный специалист по недвижимости может пригодиться!</p>
+    </div>
+
+    <div class="footer a d5">© 2026 Шайкин Илья · АН «КРАЙНОВ недвижимость»</div>
+
+  </div>
+</div>
+
+<!-- FIXED BOTTOM BAR -->
+<div class="bottom-bar">
+  <a href="tel:+79525520108" class="bb-primary">📞 Позвонить</a>
+  <a href="https://t.me/iliusha_1" target="_blank" rel="noopener" class="bb-icon">
+    <svg width="20" height="20" viewBox="0 0 26 26" fill="none"><path d="M21.5 5.5 3 12.5l6 1.5 2 5.5 3-3.5 4 3 3.5-13.5Z" fill="#29B3FF" fill-opacity=".25" stroke="#29B3FF" stroke-width="1.3" stroke-linejoin="round"/><path d="M9 14l8-5.5" stroke="#29B3FF" stroke-width="1.3" stroke-linecap="round"/></svg>
+  </a>
+</div>
+
+<script>
+function toggleSrv(row) {
+  const item = row.closest('[data-srv]');
+  const wrap = item.querySelector('.srv-desc-wrap');
+  const desc = item.querySelector('.srv-desc');
+  const isOpen = item.classList.contains('open');
+
+  document.querySelectorAll('[data-srv].open').forEach(el => {
+    el.classList.remove('open');
+    el.querySelector('.srv-desc-wrap').style.maxHeight = '0';
+  });
+
+  if (!isOpen) {
+    item.classList.add('open');
+    wrap.style.maxHeight = desc.scrollHeight + 20 + 'px';
+  }
+}
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, { threshold: 0, rootMargin: '0px 0px 9999px 0px' });
+document.querySelectorAll('.a').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
